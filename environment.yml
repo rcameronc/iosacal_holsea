@@ -1,0 +1,22 @@
+name: c14
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - pandas
+  - matplotlib
+  - xarray
+  - cartopy
+  - python
+  - pip
+  - jupyter
+  - jupyterlab
+  - xlrd=1.2.0
+  - pip:
+    - openpyxl
+      #  - git+https://github.com/ihui/iosacal.git@master#egg=iosacal
+    # - git+https://codeberg.org/steko/iosacal.git@main#egg=iosacal
+    - iosacal
+
+
+
