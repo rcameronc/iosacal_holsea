@@ -31,7 +31,7 @@ N.B. the code calculates reservoir age & uncertainty based either on the closest
 
 ![regionboxpic](./pictures/regionboxes.png)
 
-$\Delta$R values are taken from [14CHRONO Marine20 Reservoir database](http://calib.org/marine/) 
+${\Delta}$ R values are taken from [14CHRONO Marine20 Reservoir database](http://calib.org/marine/) 
 
 
 
