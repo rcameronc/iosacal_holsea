@@ -440,28 +440,32 @@ class iosacal_util:
         return next
 
 
-    def calc_mean(calibrated_age, alpha):
+    def calc_median(calibrated_age):
         '''
-        Return year spans that have the required Highest Probability Density.
-        Note: 
-            This is modified from the 'alsuren_hpd' function from Iosacal 0.5.3
-            based on a benchmarking exercise with Calib, Oxcal, and Bchron in 
-            Fall 2021. Though this function returns the mean of the age interval, 
-            that mean came substantially closer (-2/20 vs. 13/68) 
-            to Calib's median than the median of 'hpd' in the benchmarking
-            exercise. 
+        Return median calibrated age from calAge object.  
 
         '''
-        hpd_curve = calibrated_age.copy()
+        cal_curve = calibrated_age.copy()
         # sort rows by second column in inverse order
-        hpd_sorted = hpd_curve[hpd_curve[:,1].argsort(),][::-1]
-        hpd_cumsum = hpd_sorted[:,1].cumsum()
-        # normalised values
-        hpd_cumsum /= hpd_cumsum[-1]
+        cal_cumsum = cal_curve[:,1].cumsum()
+        median = cal_curve[np.argmin(abs(cal_cumsum - 0.5)),0]
+        
+        return median
 
-        threshold_index = hpd_cumsum.searchsorted(1 - alpha)
-        threshold_p = hpd_sorted[threshold_index][1]
-        threshold_index = calibrated_age[:,1] > threshold_p
-        hpd = list(hpd_curve[threshold_index,0])
+        
+        
+        
+        
+#         hpd_sorted = hpd_curve[hpd_curve[:,1].argsort(),][::-1]
+#         hpd_cumsum = hpd_sorted[:,1].cumsum()
+#         # normalised values
+#         hpd_cumsum /= hpd_cumsum[-1]
 
-        return np.mean(hpd) 
+#         threshold_index = hpd_cumsum.searchsorted(1 - alpha)
+#         threshold_p = hpd_sorted[threshold_index][1]
+#         threshold_index = calibrated_age[:,1] > threshold_p
+#         hpd = list(hpd_curve[threshold_index,0])
+
+#         return np.mean(hpd) 
+    
+    
